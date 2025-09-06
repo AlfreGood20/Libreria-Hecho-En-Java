@@ -6,6 +6,11 @@ public class Main {
     public static void main(String[] args) throws SQLException {
 
         /* 
+        Connection conexion= Conexion.getInstancia().getConexion();
+        System.out.println("Conexion exitosa");
+        Conexion.getInstancia().cerrarConexion();*/
+
+        /* 
         Usuario usuario=Usuario.builder()
         .nombre("Juan")
         .apellidos("Perez")
@@ -30,5 +35,7 @@ public class Main {
         new ContactoDAO().eliminarContacto(conexion, "Alfredo");
         Conexion.getInstancia().cerrarConexion();
     */
+
+
     }
 }
