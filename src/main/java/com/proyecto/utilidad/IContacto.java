@@ -17,4 +17,8 @@ public interface IContacto {
     boolean actualizarContacto(Connection conexion, Contacto contacto) throws SQLException;
 
     boolean eliminarContacto(Connection conexion, String nombre) throws SQLException;
+
+    Contacto obtenerPorNombreCompleto(Connection conexion, String nombre, String apellidos) throws SQLException;
+
+    boolean eliminarContactoPorId(Connection conexion, int id) throws SQLException;
 }

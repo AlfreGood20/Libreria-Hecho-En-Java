@@ -1,6 +1,11 @@
 package com.proyecto;
 
+import java.sql.Connection;
 import java.sql.SQLException;
+
+import com.proyecto.dao.ContactoDAO;
+import com.proyecto.modelo.Contacto;
+import com.proyecto.utilidad.Conexion;
 
 public class Main {
     public static void main(String[] args) throws SQLException {
@@ -36,6 +41,13 @@ public class Main {
         Conexion.getInstancia().cerrarConexion();
     */
 
+        Connection conexion= Conexion.getInstancia().getConexion();
 
+        new ContactoDAO().eliminarContactoPorId(conexion, 4);
+        new ContactoDAO().eliminarContactoPorId(conexion, 5);
+
+        Contacto contactoRecuperado=new ContactoDAO().obtenerPorNombreCompleto(conexion, "Maria", "lopez");
+        System.out.println(contactoRecuperado.toString());
+        Conexion.getInstancia().cerrarConexion();
     }
 }

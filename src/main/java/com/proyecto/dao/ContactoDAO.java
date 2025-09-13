@@ -110,4 +110,43 @@ public class ContactoDAO implements IContacto{
         }
     }
 
+    @Override
+    public Contacto obtenerPorNombreCompleto(Connection conexion, String nombre, String apellidos) throws SQLException {
+        String comando="SELECT * FROM contactos WHERE nombre=? AND apellidos=?";
+
+         try(PreparedStatement consulta=conexion.prepareStatement(comando)){
+            consulta.setString(1, nombre);
+            consulta.setString(2, apellidos);
+            
+            try(ResultSet resultado=consulta.executeQuery()){
+
+                if(resultado.next()){
+                    return new Contacto(
+                        resultado.getString("nombre"),
+                        resultado.getString("apellidos"),
+                        resultado.getString("numero_telefono"),
+                        resultado.getString("correo"),
+                        resultado.getString("direccion"),
+                        resultado.getString("categoria"),
+                        resultado.getString("foto_perfil")
+                    );
+                } else {
+                    return null;
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean eliminarContactoPorId(Connection conexion, int id) throws SQLException {
+        String comando="DELETE FROM contactos WHERE id=?";
+
+        try(PreparedStatement sentenciaPreparada=conexion.prepareStatement(comando)){
+            sentenciaPreparada.setInt(1, id);
+
+            int filasAfectadas=sentenciaPreparada.executeUpdate();
+            return filasAfectadas>0;
+        }
+    }
+
 }
