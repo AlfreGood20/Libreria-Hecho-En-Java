@@ -1,3 +1,35 @@
+# Como crear una libreria en java 😬
+
+- Paso 1
+  Crear un proyecto MAVEN (Gestor Dependencias)
+- Paso 2
+  Hacer la funcionalidad de la libreria (Funciones)
+- Paso 3
+  En la consola usar el comando:
+  ```
+  mvn clean package
+  ````
+Finalmente tendras tu libreria, el archivo .jar es el que usaras en otros proyectos.
+
+# Como usar la libreria en otro proyecto
+- Paso 1
+  Importar el archivo.jar al proyecto copiar y pegar en la raiz o en alguna carpeta
+- Paso 2
+  Si tu proyecto usa maven o gradle importarlo como dependencia en maven se hace asi:
+  ```` XML
+    <dependencies> 
+        <dependency>
+            <groupId>com.proyecto</groupId>
+            <artifactId>libreria</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <scope>system</scope>        <---Aqui pondras el url de la libreria--->
+            <systemPath>${project.basedir}/libreria-1.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+    </dependencies>
+  ````
+Finalmente usar la libreria en tu proyecto 👨‍💻🛠️
+
+
 # Funcionamiento de la libreria
   <img width="1227" height="448" alt="image" src="https://github.com/user-attachments/assets/97b12288-19b6-4f70-9dbd-122814e88d5f" />
 
